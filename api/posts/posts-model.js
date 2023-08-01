@@ -21,8 +21,8 @@ function findById(id) {
 
 function insert(post) {
   return db('posts')
-    .insert(post)
-    .then(ids => ({ id: ids[0] }));
+    .insert(post, ['id', 'title', 'contents'])  // return these fields after insert
+    .then(rows => rows[0]);  // knex returns an array of rows, we only want the first one
 }
 
 function update(id, post) {
